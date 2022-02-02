@@ -33,11 +33,10 @@ public class InitService {
         List<Film> films = new ArrayList<>();
         for (int j = 1; j < 6; j++) {
             try {
-                Thread.sleep(2000);
                 Document doc = Jsoup.connect(KINOPOISK_TOP + j)
                         .userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36")
                         .referrer("https://www.google.com/")
-                        .timeout(6000).get();
+                        .timeout(5000).get();
                 Elements elements = doc.getElementsByClass("desktop-rating-selection-film-item");
                 for (int i = 0; i < elements.size(); i++) {
                     Elements originalName = elements.get(i).getElementsByAttributeValue("class", "selection-film-item-meta__original-name");

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class Controllers {
     private final FilmsService filmsService;
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<DataFromXml> getFilmsByDate(@RequestParam(name = "year", defaultValue = "-1") int year) {
         return new ResponseEntity<>(filmsService.getFilmsByDate(year), HttpStatus.OK);
     }
