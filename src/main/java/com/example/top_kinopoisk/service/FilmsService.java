@@ -15,13 +15,13 @@ public class FilmsService {
 
     @Cacheable(cacheNames = "filmsCache", key = "#p0")
     public DataFromXml getFilmsByDate(int year) {
-        List<Film> all = filmRepository.findAll();
+        List<Film> all = filmRepository.findAll().stream().limit(10).toList();
         if (all.size() == 0) {
             new InitService().init(filmRepository);
         }
         if (year == -1) {
             return new DataFromXml().setFilms(all);
         }
-        return new DataFromXml().setFilms(all.stream().filter(f -> f.getYear() == year).toList());
+        return new DataFromXml().setFilms(all.stream().filter(f -> f.getYear() == year).limit(10).toList());
     }
 }
