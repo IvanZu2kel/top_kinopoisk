@@ -52,6 +52,7 @@ public class InitService {
                         .setRatingValue(Float.parseFloat(ratingValue.text()))
                         .setCountVotes(v);
                 if (split.length > 2) {
+                    film.setOriginalName(split[0]);
                     film.setYear(Integer.parseInt(split[2].replace(" ", "")));
                 } else if (split.length == 2) {
                     film.setOriginalName(split[0]);
