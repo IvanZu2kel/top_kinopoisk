@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Person List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>Top Films</h1>
+<!--<a href="editByDate">Edit by create date</a>-->
+<br/><br/>
+<div>
+    <table border="1">
+        <tr>
+            <th>Position</th>
+            <th>Rating value</th>
+            <th>Original name</th>
+            <th>Count votes</th>
+            <th>Year</th>
+        </tr>
+        <tr th:each ="film : ${films}">
+            <td th:utext="${film.position}">...</td>
+            <td th:utext="${film.ratingValue}">...</td>
+            <td th:utext="${film.originalName}">...</td>
+            <td th:utext="${film.countVotes}">...</td>
+            <td th:utext="${film.year}">...</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
