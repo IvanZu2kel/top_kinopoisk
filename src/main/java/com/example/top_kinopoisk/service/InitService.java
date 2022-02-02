@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Component
 public class InitService {
-    private final static String KINOPOISK_TOP = "https://www.kinopoisk.ru/lists/top250/?tab=all";
+    private final static String KINOPOISK_TOP = "https://www.kinopoisk.ru/lists/top250/?is-redirected=1";
 
     @Bean
     ApplicationRunner init(FilmRepository filmRepository) {
@@ -34,8 +34,9 @@ public class InitService {
         List<Film> films = new ArrayList<>();
         try {
             Document doc = Jsoup.connect(KINOPOISK_TOP)
-                    .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36")
-                    .timeout(5000).get();
+                    .userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36")
+                    .referrer("https://www.google.com/")
+                    .timeout(6000).get();
             Elements elements = doc.getElementsByClass("desktop-rating-selection-film-item");
             for (int i = 0; i < elements.size(); i++) {
                 Elements originalName = elements.get(i).getElementsByAttributeValue("class", "selection-film-item-meta__original-name");
@@ -64,6 +65,7 @@ public class InitService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println(films.stream().findAny());
         return new DataFromXml().setFilms(films);
     }
 }
