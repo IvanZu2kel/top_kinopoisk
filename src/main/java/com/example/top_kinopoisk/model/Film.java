@@ -2,6 +2,7 @@ package com.example.top_kinopoisk.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @Table(name = "films")
+@Accessors(chain = true)
 public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +25,11 @@ public class Film {
     @Column(name = "original_name")
     private String originalName;
 
-    @Column(name = "year")
-    private LocalDate year;
-
     @Column(name = "count_votes")
     private int countVotes;
+
+    @Column(name = "year")
+    private LocalDate year;
 }
 
 
