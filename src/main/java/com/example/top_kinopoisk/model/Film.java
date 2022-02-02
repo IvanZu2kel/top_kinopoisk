@@ -29,7 +29,7 @@ public class Film {
     private int countVotes;
 
     @Column(name = "year")
-    private LocalDate year;
+    private int year;
 }
 
 
