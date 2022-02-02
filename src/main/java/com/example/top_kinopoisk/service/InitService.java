@@ -38,12 +38,12 @@ public class InitService {
                         .referrer("https://www.google.com/")
                         .timeout(5000).get();
                 Elements elements = doc.getElementsByClass("desktop-rating-selection-film-item");
-                for (int i = 0; i < elements.size(); i++) {
-                    Elements originalName = elements.get(i).getElementsByAttributeValue("class", "selection-film-item-meta__original-name");
-                    Elements position = elements.get(i).getElementsByAttributeValue("class", "film-item-rating-position__position");
-                    Elements ratingValue = elements.get(i).getElementsByAttributeValue("class", "rating__value rating__value_positive");
-                    Elements countVotes = elements.get(i).getElementsByAttributeValue("class", "rating__count");
-                    Elements name = elements.get(i).getElementsByAttributeValue("class", "selection-film-item-meta__name");
+                for (org.jsoup.nodes.Element element : elements) {
+                    Elements originalName = element.getElementsByAttributeValue("class", "selection-film-item-meta__original-name");
+                    Elements position = element.getElementsByAttributeValue("class", "film-item-rating-position__position");
+                    Elements ratingValue = element.getElementsByAttributeValue("class", "rating__value rating__value_positive");
+                    Elements countVotes = element.getElementsByAttributeValue("class", "rating__count");
+                    Elements name = element.getElementsByAttributeValue("class", "selection-film-item-meta__name");
                     Film film = createFilm(originalName, position, ratingValue, countVotes, name);
                     films.add(film);
                 }
