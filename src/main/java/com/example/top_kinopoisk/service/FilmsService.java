@@ -1,9 +1,12 @@
 package com.example.top_kinopoisk.service;
 
+import com.example.top_kinopoisk.model.Film;
 import com.example.top_kinopoisk.repository.FilmRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -12,9 +15,13 @@ public class FilmsService {
 
     @Cacheable(cacheNames = "filmsCache", key = "#p0")
     public DataFromXml getFilmsByDate(int year) {
-        if (year == -1) {
-            return new DataFromXml().setFilms(filmRepository.findAll());
+        List<Film> all = filmRepository.findAll();
+        if (all.size() == 0) {
+            new InitService().init(filmRepository);
         }
-        return new DataFromXml().setFilms(filmRepository.findAllByYear(year));
+        if (year == -1) {
+            return new DataFromXml().setFilms(all);
+        }
+        return new DataFromXml().setFilms(all.stream().filter(f -> f.getYear() == year).toList());
     }
 }
