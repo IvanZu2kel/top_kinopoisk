@@ -9,3 +9,4 @@
 
 Для запуска приложения через cron или в терминале укажите java -jar и путь к .jar файлу.
 <img width="677" alt="Снимок экрана 2022-02-03 в 09 40 16" src="https://user-images.githubusercontent.com/85585191/152293679-0b41e3f4-e3f2-46c5-aa42-3726d9c41495.png">
+<img width="673" alt="Снимок экрана 2022-02-03 в 09 42 38" src="https://user-images.githubusercontent.com/85585191/152293912-539ccb34-1e8c-46e6-9880-1e6e7d322f33.png">
