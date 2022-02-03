@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Person List</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
@@ -17,7 +17,7 @@
             <th>Count votes</th>
             <th>Year</th>
         </tr>
-        <tr th:each ="film : ${films}">
+        <tr th:each="film : ${films}">
             <td th:utext="${film.position}">...</td>
             <td th:utext="${film.ratingValue}">...</td>
             <td th:utext="${film.originalName}">...</td>
@@ -26,5 +26,15 @@
         </tr>
     </table>
 </div>
+<br/>
+<p>
+    Введите год (к примеру "1994") чтобы получить топ фильмов произведенных в искомом году.
+    <br/>
+    Если ввести "-1"/"0" или на пустом нажать "отправить" - вернетесь к текущему топ 10.
+</p>
+<form action="/topFilms" method="get">
+    <input type="text" name="year">
+    <input type="submit">
+</form>
 </body>
 </html>
